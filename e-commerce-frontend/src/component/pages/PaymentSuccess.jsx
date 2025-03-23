@@ -18,10 +18,8 @@ const PaymentSuccess = () => {
                         quantity: item.quantity,
                         price: item.price,
                     }));
-
                     
                     console.log("Sending order:", orderDetails);
-                    
                     
                     await ApiService.createOrder({ items: orderDetails });
                     console.log("Order saved successfully");
