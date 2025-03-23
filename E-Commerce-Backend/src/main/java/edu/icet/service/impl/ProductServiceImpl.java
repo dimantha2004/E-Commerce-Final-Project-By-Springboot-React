@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     private final OrderItemRepository OrderItemRepository;
 
 
-    @Override
+    @Transactional
     public Response createProduct(Long categoryId, MultipartFile image, String name, String description, BigDecimal price,Integer quantity) {
         Category category = categoryRepo.findById(categoryId).orElseThrow(()-> new NotFoundException("Category not found"));
         String productImageUrl = awsS3Service.saveImageToS3(image);

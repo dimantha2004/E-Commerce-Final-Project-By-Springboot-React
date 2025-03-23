@@ -50,14 +50,38 @@ const AdminOrderDetailsPage = () => {
 
     const handleSubmitStatusChange = async (orderItemId) => {
         try {
+            
             const response = await ApiService.updateOrderItemsByStatus(orderItemId, selectedStatus[orderItemId]);
+            
             if (response.error) {
                 setMessage(response.message || "Failed to update status");
             } else {
-                setMessage('Order item status was successfully updated');
+                
+                const currentOrderItem = orderItems.find(item => item.id === orderItemId);
+                
+                if (currentOrderItem && currentOrderItem.user) {
+                    
+                    const emailResponse = await ApiService.sendStatusUpdateEmail(
+                        orderItemId,
+                        selectedStatus[orderItemId],
+                        currentOrderItem.user,
+                        currentOrderItem.product
+                    );
+                    
+                    if (emailResponse.error) {
+                        setMessage('Order status updated, but failed to send notification email');
+                        console.error("Error sending email:", emailResponse.message);
+                    } else {
+                        setMessage('Order status updated and notification email sent');
+                    }
+                } else {
+                    setMessage('Order status updated, but email notification not sent (missing user data)');
+                }
+                
                 
                 fetchOrderDetails(itemId);
             }
+            
             
             setTimeout(() => {
                 setMessage('');

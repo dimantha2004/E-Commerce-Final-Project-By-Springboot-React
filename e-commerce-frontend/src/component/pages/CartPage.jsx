@@ -84,7 +84,7 @@ const CartPage = () => {
         } catch (error) {
             console.error("Checkout error:", error);
             setMessage(error.response?.data?.message || error.message || 'Failed to place order');
-            setTimeout(() => setMessage(''), 5000);
+            setTimeout(() => setMessage(''), 1000);
         } finally {
             setLoading(false);
         }

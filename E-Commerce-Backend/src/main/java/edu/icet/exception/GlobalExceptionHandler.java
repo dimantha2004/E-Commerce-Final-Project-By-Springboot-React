@@ -36,6 +36,13 @@ public class GlobalExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
-
+    @ExceptionHandler(InvalidOperationException.class)
+    public ResponseEntity<Response> handleInvalidOperation(InvalidOperationException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Response.builder()
+                        .status(400)
+                        .message(ex.getMessage())
+                        .build());
+    }
 
 }

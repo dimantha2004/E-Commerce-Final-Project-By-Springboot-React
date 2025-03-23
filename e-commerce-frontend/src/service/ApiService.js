@@ -121,6 +121,7 @@ export default class ApiService {
     }
 
     // --- ORDER METHODS ---
+    
     static async createOrder(orderRequest) {
         return this.makeRequest("post", "/order/create", orderRequest);
     }
@@ -139,6 +140,17 @@ export default class ApiService {
     static async updateOrderItemsByStatus(orderItemId, status) {
         return this.makeRequest("put", `/order/update-item-status/${orderItemId}`, null, { status });
     }
+
+    // --- Email Notification ---
+    static async sendStatusUpdateEmail(orderItemId, status, userData, productData) {
+        return this.makeRequest("post", "/notification/send-status-email", {
+            orderItemId,
+            status,
+            user: userData,
+            product: productData
+        });
+    }
+
     static async createCheckoutSession(checkoutRequest) {
         return this.makeRequest("post", "/payment/create-checkout-session", checkoutRequest);
     }

@@ -11,28 +11,35 @@ const PaymentSuccess = () => {
     useEffect(() => {
         const saveOrder = async () => {
             try {
-                // Prepare the order details
-                const orderDetails = cart.map(item => ({
-                    productId: item.id,
-                    quantity: item.quantity,
-                    price: item.price,
-                }));
+                
+                if (cart && cart.length > 0) {
+                    const orderDetails = cart.map(item => ({
+                        productId: item.id,
+                        quantity: item.quantity,
+                        price: item.price,
+                    }));
 
-                // Send the order details to the backend to save in the database
-                await ApiService.saveOrder({ items: orderDetails });
+                    
+                    console.log("Sending order:", orderDetails);
+                    
+                    
+                    await ApiService.createOrder({ items: orderDetails });
+                    console.log("Order saved successfully");
+                    
+                    
+                    dispatch({ type: 'CLEAR_CART' });
+                    
+                    const timer = setTimeout(() => {
+                        navigate('/');
+                    }, 5000);
 
-                // Clear the cart after the order is saved
-                dispatch({ type: 'CLEAR_CART' });
-
-                // Redirect to the homepage after a short delay
-                const timer = setTimeout(() => {
-                    navigate('/');
-                }, 1000);
-
-                return () => clearTimeout(timer);
+                    return () => clearTimeout(timer);
+                } else {
+                    console.error("Cart is empty, nothing to order");
+                }
             } catch (error) {
                 console.error("Failed to save order:", error);
-                // Handle the error as needed
+                
             }
         };
 
