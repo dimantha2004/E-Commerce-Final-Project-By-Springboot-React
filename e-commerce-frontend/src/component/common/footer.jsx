@@ -1,0 +1,34 @@
+import React from "react";
+import '../../style/footer.css';
+import { NavLink } from "react-router-dom";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
+const Footer = () => {
+    return (
+        <footer className="footer">
+            <div className="footer-links">
+                <ul>
+                    <NavLink to="/">About Us</NavLink>
+                    <NavLink to="/">Contact Us</NavLink>
+                    <NavLink to="/">Terms & Conditions</NavLink>
+                    <NavLink to="/">Privacy Policy</NavLink>
+                    <NavLink to="/">FAQs</NavLink>
+                </ul>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="footer-social">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
+            </div>
+
+            <div className="footer-info">
+                <p>&copy; 2025 Dimaz Online-Shopping. All rights reserved.</p>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;

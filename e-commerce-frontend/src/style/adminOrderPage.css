@@ -1,0 +1,159 @@
+.admin-orders-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.admin-orders-page h2 {
+    font-size: 2.4rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+    animation: fadeIn 0.7s ease-in-out;
+    font-weight: 600;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    background-color: #ffe3e3;
+    color: #e74c3c;
+    animation: slideIn 0.5s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 900px;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+.statusFilter,
+.searchStatus {
+    flex: 1;
+}
+
+.statusFilter label,
+.searchStatus label {
+    display: block;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.statusFilter select,
+.searchStatus select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.statusFilter select:focus,
+.searchStatus select:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);
+    outline: none;
+}
+
+.orders-table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+.orders-table thead {
+    background-color: #6c63ff;
+    color: #fff;
+    text-align: center;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.orders-table th {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.orders-table tbody tr {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-3px);
+}
+
+.orders-table tbody td {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.orders-table tbody td button {
+    padding: 0.7rem 1.2rem;
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
+}
+
+.orders-table tbody td button:hover {
+    background-color: #574fdb;
+    transform: translateY(-2px);
+}
+
+.orders-table tbody td button:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

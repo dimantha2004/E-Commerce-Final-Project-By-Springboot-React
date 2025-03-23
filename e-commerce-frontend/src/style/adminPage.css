@@ -1,0 +1,71 @@
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    padding: 30px;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 0.7s ease-in-out;
+    box-sizing: border-box;
+}
+
+.admin-page h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.7s ease-in-out;
+}
+
+.admin-page button {
+    width: 100%;
+    max-width: 320px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+}
+
+.admin-page button:hover {
+    background-color: #574fdb;
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.admin-page button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
