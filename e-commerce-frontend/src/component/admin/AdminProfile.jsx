@@ -82,6 +82,57 @@ const AdminProfile = () => {
         ]
     };
 
+
+    const barChartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "top"
+            },
+            title: {
+                display: true,
+                text: "Order Status Distribution"
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return `${context.dataset.label}: ${context.raw}`;
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    precision: 0
+                }
+            }
+        }
+    };
+
+    const pieChartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "top"
+            },
+            title: {
+                display: true,
+                text: "Revenue Distribution by Status"
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return `${context.label}: LKR ${context.raw.toLocaleString()}`;
+                    }
+                }
+            }
+        }
+    };
+
+ 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -138,80 +189,86 @@ const AdminProfile = () => {
         fetchData();
     }, []);
 
-    return (
-        <div className="admin-profile-page">
-            <h1>Admin Profile</h1>
-
-            <div className="stats-section">
-                <h2>Order Statistics</h2>
-                <div>Total Orders: {orderStats.totalOrders}</div>
-                <div>Pending Orders: {orderStats.pendingOrders}</div>
-                <div>Confirmed Orders: {orderStats.confirmedOrders}</div>
-                <div>Shipped Orders: {orderStats.shippedOrders}</div>
-                <div>Cancelled Orders: {orderStats.cancelledOrders}</div>
-            </div>
-
-            <div className="chart-section">
-                <h2>Order Statistics (Bar Chart)</h2>
-                <BarChart
-                    data={barChartData}
-                    options={{
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: "top"
-                            },
-                            title: {
-                                display: true,
-                                text: "Order Status Distribution"
-                            }
-                        }
-                    }}
-                />
-            </div>
-
-            <div className="stats-section">
-                <h2>Revenue Metrics</h2>
-                <div>Total Revenue: LKR {revenueMetrics.totalRevenue.toLocaleString()}</div>
-                <div>Average Order Value: LKR {revenueMetrics.averageOrderValue.toLocaleString()}</div>
-            </div>
-
-            <div className="chart-section">
-                <h2>Revenue Distribution (Pie Chart)</h2>
-                <PieChart
-                    data={pieChartData}
-                    options={{
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: "top"
-                            },
-                            title: {
-                                display: true,
-                                text: "Revenue Distribution by Status"
-                            }
-                        }
-                    }}
-                />
-            </div>
-
-            <div className="stats-section">
-                <h2>Product Statistics</h2>
-                <div>Total Products: {productStats.totalProducts}</div>
-                <div>Top Selling Products:</div>
-                <ul>
-                    {productStats.topSellingProducts.map(product => (
+            return (
+                <div className="admin-profile-page">
+                <h1>Admin Dashboard</h1>
+                
+                <div className="dashboard-grid">
+                    <div className="stats-card">
+                    <h2>Order Statistics</h2>
+                    <div className="stat-item">
+                        <span className="stat-label">Total Orders:</span>
+                        <span className="stat-value">{orderStats.totalOrders}</span>
+                    </div>
+                    <div className="stat-item">
+                        <span className="stat-label">Pending:</span>
+                        <span className="stat-value warning">{orderStats.pendingOrders}</span>
+                    </div>
+                    <div className="stat-item">
+                        <span className="stat-label">Confirmed:</span>
+                        <span className="stat-value success">{orderStats.confirmedOrders}</span>
+                    </div>
+                    <div className="stat-item">
+                        <span className="stat-label">Shipped:</span>
+                        <span className="stat-value">{orderStats.shippedOrders}</span>
+                    </div>
+                    <div className="stat-item">
+                        <span className="stat-label">Cancelled:</span>
+                        <span className="stat-value danger">{orderStats.cancelledOrders}</span>
+                    </div>
+                    </div>
+            
+                    <div className="stats-card">
+                    <h2>Revenue Metrics</h2>
+                    <div className="stat-item">
+                        <span className="stat-label">Total Revenue:</span>
+                        <span className="stat-value revenue">LKR {revenueMetrics.totalRevenue.toLocaleString()}</span>
+                    </div>
+                    <div className="stat-item">
+                        <span className="stat-label">Avg Order Value:</span>
+                        <span className="stat-value">LKR {revenueMetrics.averageOrderValue.toLocaleString()}</span>
+                    </div>
+                    </div>
+            
+                    <div className="stats-card">
+                    <h2>Product Statistics</h2>
+                    <div className="stat-item">
+                        <span className="stat-label">Total Products:</span>
+                        <span className="stat-value">{productStats.totalProducts}</span>
+                    </div>
+                    <div className="stat-item">
+                        <span className="stat-label">Out of Stock:</span>
+                        <span className="stat-value danger">{productStats.outOfStockProducts}</span>
+                    </div>
+                    <h3>Top Selling Products</h3>
+                    <ul className="top-products-list">
+                        {productStats.topSellingProducts.map(product => (
                         <li key={product.id}>
-                            {product.name} - LKR {product.price?.toLocaleString() || 'N/A'}
+                            <span>{product.name}</span>
+                            <span>LKR {product.price?.toLocaleString() || 'N/A'}</span>
                         </li>
-                    ))}
-                </ul>
-                <div>Out of Stock Products: {productStats.outOfStockProducts}</div>
-            </div>
-
-            <div className="stats-section">
-                <h2>Recent Orders</h2>
-                <table>
+                        ))}
+                    </ul>
+                    </div>
+                </div>
+            
+                <div className="chart-container">
+                    <h2>Order Status Distribution</h2>
+                    <div className="chart-wrapper">
+                    <BarChart data={barChartData} options={barChartOptions} />
+                    </div>
+                </div>
+            
+                <div className="chart-container">
+                    <h2>Revenue Distribution by Status</h2>
+                    <div className="chart-wrapper">
+                    <PieChart data={pieChartData} options={pieChartOptions} />
+                    </div>
+                </div>
+            
+                <div className="chart-container">
+                    <h2>Recent Orders</h2>
+                    <table className="recent-orders-table">
                     <thead>
                         <tr>
                             <th>Order ID</th>

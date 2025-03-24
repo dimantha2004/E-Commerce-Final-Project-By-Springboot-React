@@ -1,149 +1,303 @@
-.admin-profile-page {
-    padding: 30px;
-    max-width: 1200px;
+/* Admin Profile Dashboard - Modern Design */
+:root {
+    --primary-color: #6a11cb;
+    --primary-light: #8e44ad;
+    --secondary-color: #2575fc;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --text-dark: #2c3e50;
+    --text-medium: #34495e;
+    --text-light: #7f8c8d;
+    --bg-light: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .admin-profile-page {
+    max-width: 1400px;
     margin: 0 auto;
-    background-color: #f4f7f6;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.stats-section {
-    margin-bottom: 30px;
-    padding: 25px;
-    border: none;
-    border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stats-section:hover {
+    padding: 2rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-light);
+  }
+  
+  .admin-profile-page h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+    text-align: center;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  
+  .admin-profile-page h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+  }
+  
+  .admin-profile-page h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1rem;
+  }
+  
+  .admin-profile-page h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.2em;
+    height: 1em;
+    width: 5px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    border-radius: 5px;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .stats-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stats-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  .stats-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.stats-section h2 {
-    margin-bottom: 20px;
-    color: #2c3e50;
-    font-size: 24px;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+  
+  .stat-label {
     font-weight: 600;
-}
-
-.stats-section div {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #34495e;
-}
-
-.stats-section ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.stats-section ul li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #ecf0f1;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-}
-
-.stats-section ul li:hover {
-    background-color: #d5dbdb;
-}
-
-table {
+    color: var(--text-medium);
+  }
+  
+  .stat-value {
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  
+  .stat-value.revenue {
+    color: var(--success-color);
+  }
+  
+  .stat-value.warning {
+    color: var(--warning-color);
+  }
+  
+  .stat-value.danger {
+    color: var(--danger-color);
+  }
+  
+  .chart-container {
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+  }
+  
+  .chart-container:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .chart-wrapper {
+    width: 100%;
+    height: 400px;
+    margin-top: 1.5rem;
+  }
+  
+  .top-products-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .top-products-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .top-products-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .recent-orders-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th, table td {
-    padding: 12px;
-    border: 1px solid #ddd;
+    margin-top: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  
+  .recent-orders-table th,
+  .recent-orders-table td {
+    padding: 1rem;
     text-align: left;
-}
-
-table th {
-    background-color: #3498db;
-    color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .recent-orders-table th {
+    background-color: var(--primary-color);
+    color: white;
     font-weight: 600;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.chart-section {
-    margin-bottom: 30px;
-    padding: 25px;
-    border: none;
-    border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.chart-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.chart-section h2 {
-    margin-bottom: 20px;
-    color: #2c3e50;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-/* Additional Styles for Modern Look */
-.admin-profile-page h1 {
-    text-align: center;
-    color: #2c3e50;
-    font-size: 36px;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-.admin-profile-page .btn {
+  }
+  
+  .recent-orders-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  
+  .recent-orders-table tr:hover {
+    background-color: rgba(106, 17, 203, 0.05);
+  }
+  
+  .status-badge {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #3498db;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.admin-profile-page .btn:hover {
-    background-color: #2980b9;
-}
-
-.admin-profile-page .btn-secondary {
-    background-color: #95a5a6;
-}
-
-.admin-profile-page .btn-secondary:hover {
-    background-color: #7f8c8d;
-}
-
-/* Animations */
-@keyframes fadeIn {
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  .status-pending {
+    background-color: rgba(243, 156, 18, 0.1);
+    color: var(--warning-color);
+  }
+  
+  .status-confirmed {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: var(--success-color);
+  }
+  
+  .status-shipped {
+    background-color: rgba(41, 128, 185, 0.1);
+    color: #2980b9;
+  }
+  
+  .status-cancelled {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--danger-color);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translateY(20px);
+      opacity: 0;
+      transform: translateY(20px);
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
-
-.admin-profile-page .stats-section, .admin-profile-page .chart-section {
-    animation: fadeIn 0.6s ease-out;
-}
+  }
+  
+  .stats-card, .chart-container {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .stats-card:nth-child(1) { animation-delay: 0.1s; }
+  .stats-card:nth-child(2) { animation-delay: 0.2s; }
+  .stats-card:nth-child(3) { animation-delay: 0.3s; }
+  .chart-container:nth-child(1) { animation-delay: 0.4s; }
+  .chart-container:nth-child(2) { animation-delay: 0.5s; }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .dashboard-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .admin-profile-page {
+      padding: 1.5rem;
+    }
+    
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .chart-wrapper {
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .admin-profile-page {
+      padding: 1rem;
+    }
+    
+    .admin-profile-page h1 {
+      font-size: 2rem;
+    }
+    
+    .stats-card, .chart-container {
+      padding: 1.5rem;
+    }
+    
+    .recent-orders-table th,
+    .recent-orders-table td {
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
