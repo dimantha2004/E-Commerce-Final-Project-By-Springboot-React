@@ -137,7 +137,7 @@ const AdminOrderDetailsPage = () => {
                                                 <p><strong>State: </strong>{orderItem.user.address.state}</p>
                                                 <p><strong>City: </strong>{orderItem.user.address.city}</p>
                                                 <p><strong>Street: </strong>{orderItem.user.address.street}</p>
-                                                <p><strong>Zip Code: </strong>{orderItem.user.address.zipcode}</p>
+                                                <p><strong>Zip Code: </strong>{orderItem.user.address.zipCode}</p>
                                             </>
                                         ) : (
                                             <p>No address information available</p>
