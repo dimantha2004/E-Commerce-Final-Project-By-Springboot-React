@@ -1,4 +1,4 @@
-/* Main theme variables */
+
 :root {
     --primary-color: #4a6fa5;
     --primary-dark: #355382;
@@ -15,7 +15,7 @@
     --transition-speed: 0.3s;
   }
   
-  /* Global Styles */
+ 
   body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--background-light);
@@ -25,7 +25,7 @@
     line-height: 1.6;
   }
   
-  /* Login Page Styles */
+ 
   .login-container {
     display: flex;
     justify-content: center;
@@ -144,7 +144,7 @@
     color: var(--primary-dark);
   }
   
-  /* Google Sign In Button */
+ 
   .google-signin {
     margin-top: 25px;
     text-align: center;
@@ -170,7 +170,7 @@
     z-index: -1;
   }
   
-  /* Modal Styles */
+ 
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -261,7 +261,7 @@
     background-color: #d1d1d1;
   }
   
-  /* Register Page Styles */
+ 
   .register-page {
     min-height: 100vh;
     background: linear-gradient(135deg, var(--primary-light) 0%, var(--background-light) 100%);
@@ -361,7 +361,7 @@
     color: var(--primary-dark);
   }
   
-  /* Message notifications */
+ 
   .message {
     padding: 12px 15px;
     margin-bottom: 20px;
@@ -383,7 +383,7 @@
     color: var(--error-color);
   }
   
-  /* Home Page Styles */
+ 
   .home {
     padding: 40px 20px;
     max-width: 1200px;
@@ -400,7 +400,7 @@
     margin-bottom: 20px;
   }
   
-  /* Product List Styles */
+ 
   .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -490,7 +490,7 @@
     color: var(--text-light);
   }
   
-  /* Pagination Styles */
+ 
   .pagination {
     display: flex;
     justify-content: center;
@@ -524,7 +524,7 @@
     cursor: not-allowed;
   }
   
-  /* Responsive Adjustments */
+ 
   @media (max-width: 768px) {
     .login-form,
     .register-page form,
