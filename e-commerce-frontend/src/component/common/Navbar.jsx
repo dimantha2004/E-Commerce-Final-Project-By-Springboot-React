@@ -65,6 +65,7 @@ const Navbar = () => {
                         <NavLink to="/">Home</NavLink>
                         <NavLink to="/categories">Categories</NavLink>
                         <NavLink to="/cart">Cart</NavLink>
+                        <NavLink to="/chat">Chat</NavLink>
                         <NavLink to="/profile">My Account</NavLink>
                         <NavLink onClick={handleLogout}>Logout</NavLink>
                     </>
@@ -74,6 +75,7 @@ const Navbar = () => {
                     <>
                         <NavLink to="/admin-profile">Admin Profile</NavLink>
                         <NavLink to="/admin">Admin</NavLink>
+                        <NavLink to="/chat">Chat</NavLink>
                         <NavLink onClick={handleLogout}>Logout</NavLink>
                     </>
                 )}

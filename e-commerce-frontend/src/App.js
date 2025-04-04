@@ -25,11 +25,10 @@ import EditProductPage from './component/admin/EditProductPage';
 import AdminOrdersPage from './component/admin/AdminOrderPage';
 import AdminOrderDetailsPage from './component/admin/AdminOrderDetailsPage';
 import AdminProfile from './component/admin/AdminProfile';
-
 import BarChart from './component/common/barchart';
 import PieChart from './component/common/piechart';
-
 import PaymentSuccess from './component/pages/PaymentSuccess';
+import Chat from './component/common/Chat';
 
 function App() {
   return (
@@ -47,7 +46,6 @@ function App() {
         <Route path='/profile' element={<ProtectedRoute element={<ProfilePage/>} />} />
         <Route path='/add-address' element={<ProtectedRoute element={<AddressPage/>} />} />
         <Route path='/edit-address' element={<ProtectedRoute element={<AddressPage/>} />} />
-        
         <Route path='/admin' element={<AdminRoute element={<AdminPage/>} />} />
         <Route path='/admin/categories' element={<AdminRoute element={<AdminCategoryPage/>} />} />
         <Route path='/admin/add-category' element={<AdminRoute element={<AddCategory/>} />} />
@@ -58,8 +56,8 @@ function App() {
         <Route path='/admin/orders' element={<AdminRoute element={<AdminOrdersPage/>} />} />
         <Route path='/admin/order-details/:itemId' element={<AdminRoute element={<AdminOrderDetailsPage/>} />} />
         <Route path="/admin-profile" element={<AdminRoute element={<AdminProfile />} />} />
-        
         <Route path="/checkout/success" element={<PaymentSuccess />} />
+        <Route path="/Chat" element={<ProtectedRoute element={<Chat />} />} />
        </Routes>
       <Footer/>
     </CartProvider>
