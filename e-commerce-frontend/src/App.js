@@ -28,7 +28,7 @@ import AdminProfile from './component/admin/AdminProfile';
 import BarChart from './component/common/barchart';
 import PieChart from './component/common/piechart';
 import PaymentSuccess from './component/pages/PaymentSuccess';
-import Chat from './component/common/Chat';
+import Chat from './component/common/Chat ';
 
 function App() {
   return (
