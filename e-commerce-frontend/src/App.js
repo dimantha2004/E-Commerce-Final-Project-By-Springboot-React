@@ -4,6 +4,9 @@ import { ProtectedRoute, AdminRoute } from './service/Guard';
 import Navbar from './component/common/Navbar';
 import Footer from './component/common/footer';
 import { CartProvider } from './component/context/CartContext';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faClock, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 import Home from './component/pages/Home';
 import ProductDetailsPage from './component/pages/ProductDetailsPage';
@@ -28,7 +31,7 @@ import AdminProfile from './component/admin/AdminProfile';
 import BarChart from './component/common/barchart';
 import PieChart from './component/common/piechart';
 import PaymentSuccess from './component/pages/PaymentSuccess';
-import Chat from './component/common/Chat ';
+import Chat from './component/common/Chat';
 
 function App() {
   return (
