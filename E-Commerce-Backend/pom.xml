@@ -12,6 +12,7 @@
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>23</java.version>
     </properties>
 
     <parent>
@@ -100,7 +101,7 @@
         <dependency>
             <groupId>com.stripe</groupId>
             <artifactId>stripe-java</artifactId>
-            <version>20.119.0</version>
+            <version>24.4.0</version>
         </dependency>
 
         <dependency>
@@ -124,16 +125,11 @@
             <version>1.43.3</version>
         </dependency>
         <dependency>
-            <groupId>com.stripe</groupId>
-            <artifactId>stripe-java</artifactId>
-            <version>24.4.0</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version> <!-- Or a recent version -->
+            <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-
-
     </dependencies>
 
     <build>
@@ -153,10 +149,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
                 <configuration>
                     <source>23</source>
                     <target>23</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

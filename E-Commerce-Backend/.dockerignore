@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# Allow these
+!/src/**/
+!pom.xml
+!Dockerfile
+!docker-compose.yml
+
+# Explicit ignores
+.git
+.idea
+target/
+*.iml
+*.log
