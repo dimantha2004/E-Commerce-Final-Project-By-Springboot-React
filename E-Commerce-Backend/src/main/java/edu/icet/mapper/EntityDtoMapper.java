@@ -2,11 +2,14 @@ package edu.icet.mapper;
 
 import edu.icet.dto.*;
 import edu.icet.entity.*;
+import jakarta.persistence.Entity;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
 @Component
+
 public class EntityDtoMapper {
 
     public UserDto mapUserToDtoBasic(User user){

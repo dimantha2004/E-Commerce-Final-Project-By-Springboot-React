@@ -1,11 +1,10 @@
-FROM openjdk:23-slim AS build
+FROM azul/zulu-openjdk:23 AS build
 RUN apt-get update && apt-get install -y maven
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+COPY . .
 RUN mvn clean package -DskipTests
 
-FROM openjdk:23-slim
+FROM azul/zulu-openjdk:23
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080

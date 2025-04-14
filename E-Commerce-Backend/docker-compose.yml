@@ -14,7 +14,6 @@ services:
       interval: 5s
       timeout: 10s
       retries: 5
-
   backend:
     build: .
     ports:
@@ -26,6 +25,5 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/ecom
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
-
 volumes:
   mysql_data:
