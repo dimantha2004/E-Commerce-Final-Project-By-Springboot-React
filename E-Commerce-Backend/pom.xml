@@ -13,6 +13,7 @@
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>23</java.version>
+        <tomcat.version>10.1.36</tomcat.version>
     </properties>
 
     <parent>
@@ -21,6 +22,17 @@
         <version>3.4.3</version>
     </parent>
     <dependencies>
+
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
