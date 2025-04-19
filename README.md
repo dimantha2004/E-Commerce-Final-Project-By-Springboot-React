@@ -18,6 +18,9 @@ This is a full-stack E-Commerce web application built using **Spring Boot (Java)
 - Spring Security (if implemented)
 - Hibernate
 - MySQL / H2 Database (specify actual DB used)
+- Docker
+- Strip API
+- Google Login
 
 ---
 
