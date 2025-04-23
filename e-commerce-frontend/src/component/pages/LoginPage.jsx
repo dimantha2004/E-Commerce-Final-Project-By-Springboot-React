@@ -38,7 +38,14 @@ const LoginPage = () => {
                 }, 1000);
             }
         } catch (error) {
-            setMessage(error.response?.data.message || error.message || "Unable to login");
+            // Check if the error is related to password
+            if (error.response?.data?.error === 'auth_failed' || 
+                error.response?.status === 401 || 
+                error.response?.data?.message?.toLowerCase().includes('password')) {
+                setMessage("Entered password is not matching");
+            } else {
+                setMessage(error.response?.data.message || error.message || "Unable to login");
+            }
         }
     }
 
