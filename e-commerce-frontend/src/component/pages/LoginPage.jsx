@@ -28,26 +28,26 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Clear any previous messages
+            setMessage(null);
+            
             const response = await ApiService.loginUser(formData);
-            if (response.status === 200) {
+            
+            if (response && response.status === 200) {
                 setMessage("User Successfully Logged in");
                 localStorage.setItem('token', response.token);
                 localStorage.setItem('role', response.role);
                 setTimeout(() => {
-                    navigate("/profile")
+                    navigate("/profile");
                 }, 1000);
             }
         } catch (error) {
-            // Check if the error is related to password
-            if (error.response?.data?.error === 'auth_failed' || 
-                error.response?.status === 401 || 
-                error.response?.data?.message?.toLowerCase().includes('password')) {
-                setMessage("Entered password is not matching");
-            } else {
-                setMessage(error.response?.data.message || error.message || "Unable to login");
-            }
+            console.error("Login error:", error);
+            
+            // Always set the error message for password issues
+            setMessage("Entered password is not matching");
         }
-    }
+    };
 
     const handleForgotPassword = async () => {
         if (!formData.email) {
@@ -91,20 +91,20 @@ const LoginPage = () => {
 
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
-          console.log("Google credential received:", credentialResponse);
-          const response = await ApiService.googleLogin(credentialResponse.credential);
-          console.log("Backend response:", response);
-          
-          if (response.status === 200) {
-            localStorage.setItem('token', response.token);
-            localStorage.setItem('role', response.role);
-            navigate("/profile");
-          }
+            console.log("Google credential received:", credentialResponse);
+            const response = await ApiService.googleLogin(credentialResponse.credential);
+            console.log("Backend response:", response);
+            
+            if (response.status === 200) {
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('role', response.role);
+                navigate("/profile");
+            }
         } catch (error) {
-          console.error("Google login error:", error);
-          setMessage(error.response?.data?.message || "Google login failed");
+            console.error("Google login error:", error);
+            setMessage(error.response?.data?.message || "Google login failed");
         }
-      };
+    };
 
     const handleGoogleError = () => {
         setMessage("Google login failed");
