@@ -16,7 +16,6 @@ const Footer = () => {
                 </ul>
             </div>
 
-            {/* Social Media Links */}
             <div className="footer-social">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>

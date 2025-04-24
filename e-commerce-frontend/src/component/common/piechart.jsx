@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-// Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ data, options }) => {
@@ -10,7 +9,7 @@ const PieChart = ({ data, options }) => {
 
     useEffect(() => {
         return () => {
-            // Cleanup chart instance on unmount
+            
             if (chartRef.current) {
                 chartRef.current.destroy();
             }
