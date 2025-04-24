@@ -31,19 +31,17 @@ public class TomcatConfig {
         return new CookieCleanupFilter();
     }
 
-    // Filter to clean up problematic cookie headers
     public static class CookieCleanupFilter extends OncePerRequestFilter {
         @Override
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                         FilterChain filterChain) throws ServletException, IOException {
 
-            // Create a cookie header wrapper that sanitizes the g_state cookie if present
             HttpServletRequest wrappedRequest = new HttpServletRequestWrapper(request) {
                 @Override
                 public String getHeader(String name) {
                     String header = super.getHeader(name);
                     if ("cookie".equalsIgnoreCase(name) && header != null && header.contains("g_state=")) {
-                        // Remove the problematic g_state cookie
+
                         return header.replaceAll("g_state=[^;]*;?\\s*", "");
                     }
                     return header;
@@ -57,7 +55,7 @@ public class TomcatConfig {
                         while (headers.hasMoreElements()) {
                             String header = headers.nextElement();
                             if (header != null && header.contains("g_state=")) {
-                                // Remove the problematic g_state cookie
+
                                 header = header.replaceAll("g_state=[^;]*;?\\s*", "");
                                 if (!header.trim().isEmpty()) {
                                     result.add(header);
@@ -88,8 +86,6 @@ public class TomcatConfig {
             filterChain.doFilter(wrappedRequest, response);
         }
     }
-
-    // HttpServletRequest wrapper class
     private static class HttpServletRequestWrapper extends jakarta.servlet.http.HttpServletRequestWrapper {
         public HttpServletRequestWrapper(HttpServletRequest request) {
             super(request);

@@ -124,7 +124,8 @@ const AdminProfile = () => {
             tooltip: {
                 callbacks: {
                     label: function(context) {
-                        return `${context.label}: LKR ${context.raw.toLocaleString()}`;
+                        return `${context.label}: $
+                         ${context.raw.toLocaleString()}`;
                     }
                 }
             }
@@ -222,11 +223,11 @@ const AdminProfile = () => {
                     <h2>Revenue Metrics</h2>
                     <div className="stat-item">
                         <span className="stat-label">Total Revenue:</span>
-                        <span className="stat-value revenue">LKR {revenueMetrics.totalRevenue.toLocaleString()}</span>
+                        <span className="stat-value revenue">$ {revenueMetrics.totalRevenue.toLocaleString()}</span>
                     </div>
                     <div className="stat-item">
                         <span className="stat-label">Avg Order Value:</span>
-                        <span className="stat-value">LKR {revenueMetrics.averageOrderValue.toLocaleString()}</span>
+                        <span className="stat-value">$ {revenueMetrics.averageOrderValue.toLocaleString()}</span>
                     </div>
                     </div>
             
@@ -245,7 +246,7 @@ const AdminProfile = () => {
                         {productStats.topSellingProducts.map(product => (
                         <li key={product.id}>
                             <span>{product.name}</span>
-                            <span>LKR {product.price?.toLocaleString() || 'N/A'}</span>
+                            <span>$ {product.price?.toLocaleString() || 'N/A'}</span>
                         </li>
                         ))}
                     </ul>
@@ -284,7 +285,7 @@ const AdminProfile = () => {
                                 <td>{order.id}</td>
                                 <td>{order.product?.name || 'N/A'}</td>
                                 <td>{order.quantity}</td>
-                                <td>LKR {(order.price * order.quantity).toLocaleString()}</td>
+                                <td>$ {(order.price * order.quantity).toLocaleString()}</td>
                                 <td>{order.status}</td>
                             </tr>
                         ))}

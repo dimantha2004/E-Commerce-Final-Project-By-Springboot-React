@@ -28,7 +28,6 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Clear any previous messages
             setMessage(null);
             
             const response = await ApiService.loginUser(formData);
@@ -43,8 +42,6 @@ const LoginPage = () => {
             }
         } catch (error) {
             console.error("Login error:", error);
-            
-            // Always set the error message for password issues
             setMessage("Entered password is not matching");
         }
     };

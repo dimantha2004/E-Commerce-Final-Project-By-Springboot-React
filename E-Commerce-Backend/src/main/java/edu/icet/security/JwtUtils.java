@@ -19,7 +19,7 @@ import java.util.function.Function;
 @Slf4j
 public class JwtUtils {
 
-    private static final long EXPIRATION_TIME_IN_MILLISEC = 1000L * 60L * 60L * 24L * 30L * 6L; // Expires in 6 months
+    private static final long EXPIRATION_TIME_IN_MILLISEC = 1000L * 60L * 60L * 24L * 30L * 6L;
     private SecretKey key;
 
     @Value("${jwt.secretKey}")
@@ -27,7 +27,7 @@ public class JwtUtils {
 
     @PostConstruct
     private void init() {
-        byte[] keyBytes = Base64.getDecoder().decode(secretKey); // Decode Base64 key
+        byte[] keyBytes = Base64.getDecoder().decode(secretKey);
         this.key = new SecretKeySpec(keyBytes, "HmacSHA256");
     }
 
