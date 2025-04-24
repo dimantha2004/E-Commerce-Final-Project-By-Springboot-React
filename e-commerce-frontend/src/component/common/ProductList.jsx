@@ -11,7 +11,7 @@ const ProductList = ({ products }) => {
     }
 
     const incrementItem = (product) => {
-        // Also check stock before incrementing
+       
         if (product.quantity > 0) {
             dispatch({ type: 'INCREMENT_ITEM', payload: product });
         }
@@ -38,7 +38,7 @@ const ProductList = ({ products }) => {
                             <img src={product.imageUrl} alt={product.name} className="product-image" />
                             <h3>{product.name}</h3>
                             <p>{product.description}</p>
-                            <span>${product.price.toFixed(2)}</span>
+                            <span>RS :{product.price.toFixed(2)}</span>
                             <div className="product-stock">
                                 Stock: {product.quantity ? product.quantity : "Out of Stock"}
                             </div>

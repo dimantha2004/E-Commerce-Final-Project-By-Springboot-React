@@ -227,7 +227,7 @@ const AdminProfile = () => {
                     </div>
                     <div className="stat-item">
                         <span className="stat-label">Avg Order Value:</span>
-                        <span className="stat-value">$ {revenueMetrics.averageOrderValue.toLocaleString()}</span>
+                        <span className="stat-value">RS :{revenueMetrics.averageOrderValue.toLocaleString()}</span>
                     </div>
                     </div>
             
@@ -246,7 +246,7 @@ const AdminProfile = () => {
                         {productStats.topSellingProducts.map(product => (
                         <li key={product.id}>
                             <span>{product.name}</span>
-                            <span>$ {product.price?.toLocaleString() || 'N/A'}</span>
+                            <span>RS :{product.price?.toLocaleString() || 'N/A'}</span>
                         </li>
                         ))}
                     </ul>
@@ -285,7 +285,7 @@ const AdminProfile = () => {
                                 <td>{order.id}</td>
                                 <td>{order.product?.name || 'N/A'}</td>
                                 <td>{order.quantity}</td>
-                                <td>$ {(order.price * order.quantity).toLocaleString()}</td>
+                                <td>RS : {(order.price * order.quantity).toLocaleString()}</td>
                                 <td>{order.status}</td>
                             </tr>
                         ))}

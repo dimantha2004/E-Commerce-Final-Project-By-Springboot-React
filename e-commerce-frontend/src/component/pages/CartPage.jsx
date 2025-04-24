@@ -40,7 +40,7 @@ const CartPage = () => {
         }
 
         if (totalCents < 50) {
-            setMessage("Minimum order amount is $0.50");
+            setMessage("Minimum order amount is RS :100.00");
             return;
         }
 
@@ -126,7 +126,7 @@ const CartPage = () => {
                                         </button>
                                     </div>
                                     <p className="price">
-                                        ${(item.price * item.quantity).toFixed(2)}
+                                        RS :{(item.price * item.quantity).toFixed(2)}
                                     </p>
                                 </div>
                             </li>
@@ -134,7 +134,7 @@ const CartPage = () => {
                     </ul>
                     
                     <div className="checkout-section">
-                        <h2>Total: ${totalDollars}</h2>
+                        <h2>Total : {totalDollars}</h2>
                         <button 
                             onClick={handleCheckout}
                             disabled={loading || totalCents < 50}

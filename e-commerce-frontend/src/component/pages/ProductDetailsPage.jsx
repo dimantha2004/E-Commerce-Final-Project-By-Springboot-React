@@ -4,7 +4,6 @@ import { useCart } from "../context/CartContext";
 import ApiService from "../../service/ApiService";
 import '../../style/productDetailsPage.css';
 
-
 const ProductDetailsPage = () => {
 
     const {productId} = useParams();
@@ -62,8 +61,8 @@ const ProductDetailsPage = () => {
             <img src={product?.imageUrl} alt={product?.name} />
             <h1>{product?.name}</h1>
             <p>{product?.description}</p>
-            <span>${product.price.toFixed(2)}</span>
-            {/* Add quantity display */}
+            <span>RS :{product.price.toFixed(2)}</span>
+            
             <div className="product-stock">
     Available in Stock: {product?.quantity || 0}
 </div>

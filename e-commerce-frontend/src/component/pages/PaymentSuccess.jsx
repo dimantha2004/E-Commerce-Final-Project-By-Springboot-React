@@ -46,7 +46,7 @@ const PaymentSuccess = () => {
 
     return (
         <div className="checkout-success">
-            <h1>Payment Successful...! 🎉</h1>
+            <h1>Payment Successful...!</h1>
             <p>Thank you for your purchase. You'll be redirected to the homepage shortly.</p>
         </div>
     );
