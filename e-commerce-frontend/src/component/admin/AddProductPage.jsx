@@ -39,13 +39,33 @@ const AddProductPage = () => {
             const response = await ApiService.createProduct(formData);
             
             if (response && response.status === 200) {
-                setMessage("Product created successfully");
+                setMessage(
+                  <div className="toast-message success">
+                    <svg className="toast-icon" viewBox="0 0 24 24">
+                      <path fill="var(--success-color)" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <div className="toast-content">
+                      <h3>Success!</h3>
+                      <p>Product created successfully</p>
+                    </div>
+                  </div>
+                );
                 setTimeout(() => {
-                    navigate('/admin/products');
+                  navigate('/admin/products');
                 }, 1500);
-            } else {
-                setMessage("Failed to create product");
-            }
+              } else {
+                setMessage(
+                  <div className="toast-message error">
+                    <svg className="toast-icon" viewBox="0 0 24 24">
+                      <path fill="var(--danger-color)" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                    <div className="toast-content">
+                      <h3>Error!</h3>
+                      <p>Failed to create product</p>
+                    </div>
+                  </div>
+                );
+              }
         } catch (error) {
             console.error("Create error:", error);
             setMessage(error.response?.data?.message || error.message || 'Unable to create product');
