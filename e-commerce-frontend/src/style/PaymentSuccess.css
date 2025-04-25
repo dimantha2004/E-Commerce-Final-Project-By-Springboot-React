@@ -1,21 +1,183 @@
-.checkout-success {
+.payment-success-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    text-align: center;
-    background-color: #f8f9fa;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
     padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.checkout-success h1 {
+.success-card {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.success-icon {
+    margin: 0 auto 30px;
+    width: 80px;
+    height: 80px;
+}
+
+.checkmark {
+    width: 100%;
+    height: 100%;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4BB543;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke-width: 3;
+    stroke: #4BB543;
+    fill: none;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+h1 {
+    color: #2a2a2a;
     font-size: 2.5rem;
-    color: #28a745; 
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    font-weight: 600;
 }
 
-.checkout-success p {
-    font-size: 1.2rem;
-    color: #6c757d; 
+.order-message {
+    font-size: 1.3rem;
+    color: #4BB543;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.order-details {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.order-details p {
+    margin: 8px 0;
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.redirect-message {
+    font-size: 0.95rem;
+    color: #888;
+    margin-top: 15px;
+}
+
+.countdown {
+    font-weight: bold;
+    color: #4BB543;
+    animation: pulse 1s infinite;
+}
+
+.continue-shopping {
+    background-color: #4BB543;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(75, 181, 67, 0.2);
+}
+
+.continue-shopping:hover {
+    background-color: #3d9c35;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(75, 181, 67, 0.3);
+}
+
+.continue-shopping:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.success-card::after {
+    content: '';
+    animation: countdown 5s linear forwards;
+}
+
+@keyframes countdown {
+    from {
+        content: '5';
+    }
+    20% {
+        content: '4';
+    }
+    40% {
+        content: '3';
+    }
+    60% {
+        content: '2';
+    }
+    80% {
+        content: '1';
+    }
+    to {
+        content: '0';
+    }
+}
+
+@media (max-width: 600px) {
+    .success-card {
+        padding: 30px 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .order-message {
+        font-size: 1.1rem;
+    }
 }
