@@ -11,11 +11,13 @@ This is a full-stack E-Commerce web application built using **Spring Boot (Java)
 - Axios
 - Bootstrap / Tailwind CSS (update as per your actual usage)
 - React Router DOM
+- Stripe(Payment Gateway)
 
 ### Backend:
 - Spring Boot (Java)
 - Spring Data JPA
-- Spring Security (if implemented)
+- Spring Security
+- JWT
 - Hibernate
 - MySQL / H2 Database (specify actual DB used)
 - Docker
