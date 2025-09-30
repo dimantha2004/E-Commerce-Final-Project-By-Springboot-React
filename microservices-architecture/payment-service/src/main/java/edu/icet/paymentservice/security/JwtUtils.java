@@ -57,16 +57,16 @@ public class JwtUtils {
     private <T> T extractClaims(String token, Function<Claims, T> claimsTFunction) {
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(key)
-                    .parseClaimsJws(token)
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token)
                     .getPayload();
             return claimsTFunction.apply(claims);
         } catch (Exception e) {
             log.error("Error extracting claims from token: {}", e.getMessage(), e);
-            throw new RuntimeException("Invalid token");
+            throw new IllegalArgumentException("Invalid token", e);
         }
     }
-
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username != null && username.equals(userDetails.getUsername()) && !isTokenExpired(token));

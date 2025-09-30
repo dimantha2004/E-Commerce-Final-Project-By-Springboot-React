@@ -4,6 +4,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
+import edu.icet.paymentservice.exception.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -27,9 +28,9 @@ public class GoogleTokenVerifier {
             if (idToken != null) {
                 return idToken.getPayload();
             }
-            throw new RuntimeException("Invalid Google token: token verification failed");
+            throw new InvalidCredentialsException("Invalid Google token: token verification failed");
         } catch (Exception e) {
-            throw new RuntimeException("Google token verification error: " + e.getMessage());
+            throw new InvalidCredentialsException("Google token verification error: " + e.getMessage());
         }
     }
 }
