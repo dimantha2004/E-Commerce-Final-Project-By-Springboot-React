@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecom
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: derivdima@gmail.com
+    password: kldk tzcj gdac bvmp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secretKey: MjAwNDE4MzA0MjgwcGFrYXlhMjAwNDE4MzA0MjgwcGFrYXlh
+
+google:
+  client-id: 646368842911-c8fbrq65ih2usst9huv7q6hbq9cjtpc7.apps.googleusercontent.com
