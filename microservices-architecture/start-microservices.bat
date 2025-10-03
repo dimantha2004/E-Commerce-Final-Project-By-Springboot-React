@@ -1,60 +1,54 @@
 @echo off
-echo Starting E-Commerce Microservices Backend...
+echo Starting E-Commerce Microservices...
 echo.
 
-echo ====================================
-echo Starting Service Discovery (Eureka Server)...
-echo ====================================
-start "Service Discovery" cmd /k "cd /d F:\Desktop\Desktop\E-Commerce\E-Commerce-Final-Project-By-Springboot-React\microservices-architecture\service-discovery && mvn spring-boot:run"
+echo Starting Eureka Server (Service Discovery)...
+cd service-discovery
+start "Eureka Server" cmd /k "mvn spring-boot:run"
+echo Waiting for Eureka Server to start...
+timeout /t 30 /nobreak >nul
+cd ..
 
-echo Waiting 15 seconds for Eureka Server to start...
-timeout /t 15 /nobreak
-
-echo ====================================
 echo Starting API Gateway...
-echo ====================================
-start "API Gateway" cmd /k "cd /d F:\Desktop\Desktop\E-Commerce\E-Commerce-Final-Project-By-Springboot-React\microservices-architecture\api-gateway && mvn spring-boot:run"
+cd api-gateway
+start "API Gateway" cmd /k "mvn spring-boot:run"
+echo Waiting for API Gateway to start...
+timeout /t 20 /nobreak >nul
+cd ..
 
-echo Waiting 10 seconds for API Gateway to start...
-timeout /t 10 /nobreak
-
-echo ====================================
 echo Starting User Service...
-echo ====================================
-start "User Service" cmd /k "cd /d F:\Desktop\Desktop\E-Commerce\E-Commerce-Final-Project-By-Springboot-React\microservices-architecture\user-service && mvn spring-boot:run"
+cd user-service
+start "User Service" cmd /k "mvn spring-boot:run"
+timeout /t 15 /nobreak >nul
+cd ..
 
-echo ====================================
 echo Starting Product Service...
-echo ====================================
-start "Product Service" cmd /k "cd /d F:\Desktop\Desktop\E-Commerce\E-Commerce-Final-Project-By-Springboot-React\microservices-architecture\product-service && mvn spring-boot:run"
+cd product-service
+start "Product Service" cmd /k "mvn spring-boot:run"
+timeout /t 15 /nobreak >nul
+cd ..
 
-echo ====================================
 echo Starting Order Service...
-echo ====================================
-start "Order Service" cmd /k "cd /d F:\Desktop\Desktop\E-Commerce\E-Commerce-Final-Project-By-Springboot-React\microservices-architecture\order-service && mvn spring-boot:run"
+cd order-service
+start "Order Service" cmd /k "mvn spring-boot:run"
+timeout /t 15 /nobreak >nul
+cd ..
 
-echo ====================================
 echo Starting Payment Service...
-echo ====================================
-start "Payment Service" cmd /k "cd /d F:\Desktop\Desktop\E-Commerce\E-Commerce-Final-Project-By-Springboot-React\microservices-architecture\payment-service && mvn spring-boot:run"
+cd payment-service
+start "Payment Service" cmd /k "mvn spring-boot:run"
+timeout /t 15 /nobreak >nul
+cd ..
 
-echo ====================================
 echo Starting Notification Service...
-echo ====================================
-start "Notification Service" cmd /k "cd /d F:\Desktop\Desktop\E-Commerce\E-Commerce-Final-Project-By-Springboot-React\microservices-architecture\notification-service && mvn spring-boot:run"
+cd notification-service
+start "Notification Service" cmd /k "mvn spring-boot:run"
+timeout /t 15 /nobreak >nul
+cd ..
 
 echo.
-echo ====================================
 echo All microservices are starting up...
-echo ====================================
-echo Service URLs:
-echo - Eureka Dashboard: http://localhost:8761
-echo - API Gateway: http://localhost:8080
-echo - User Service: http://localhost:8081
-echo - Product Service: http://localhost:8082
-echo - Order Service: http://localhost:8083
-echo - Payment Service: http://localhost:8084
-echo - Notification Service: http://localhost:8085
-echo.
-echo Press any key to exit...
+echo Check individual windows for startup status.
+echo API Gateway will be available at: http://localhost:8080
+echo Eureka Dashboard: http://localhost:8761
 pause

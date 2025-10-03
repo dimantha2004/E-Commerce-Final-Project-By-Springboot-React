@@ -1,9 +1,9 @@
 server:
-  port: 8085
+  port: 8081
 
 spring:
   application:
-    name: notification-service
+    name: user-service
   datasource:
     url: jdbc:mysql://localhost:3306/ecom
     username: root
@@ -29,13 +29,6 @@ spring:
             enable: true
   kafka:
     bootstrap-servers: localhost:9092
-    consumer:
-      group-id: notification-service-group
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
 
 eureka:
   client:
@@ -46,7 +39,17 @@ eureka:
   instance:
     hostname: localhost
 
+# JWT Configuration
+jwt:
+  secretKey: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  expirationMs: 86400000
+
+# Google OAuth Configuration
+google:
+  client-id: your-google-client-id-here
+
 # Logging
 logging:
   level:
-    edu.icet.notificationservice: DEBUG
+    edu.icet.userservice: DEBUG
+    org.springframework.security: DEBUG

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class ApiService {
-    static BASE_URL = "http://localhost:8080";
+    static BASE_URL = "http://localhost:8080"; // API Gateway URL
 
     static getHeader(contentType = "application/json") {
         const token = localStorage.getItem("token");
@@ -52,33 +52,33 @@ export default class ApiService {
         }
     }
 
-    // --- CATEGORY METHODS ---
+    // --- CATEGORY METHODS --- (Product Service)
     static async createCategory(body) {
-        return this.makeRequest("post", "/category/create", body);
+        return this.makeRequest("post", "/api/categories/create", body);
     }
 
     static async getAllCategory() {
-        return this.makeRequest("get", "/category/get-all");
+        return this.makeRequest("get", "/api/categories/get-all");
     }
 
     static async getCategoryById(categoryId) {
-        return this.makeRequest("get", `/category/get-category-by-id/${categoryId}`);
+        return this.makeRequest("get", `/api/categories/get-category-by-id/${categoryId}`);
     }
 
     static async updateCategory(categoryId, body) {
-        return this.makeRequest("put", `/category/update/${categoryId}`, body);
+        return this.makeRequest("put", `/api/categories/update/${categoryId}`, body);
     }
 
     static async deleteCategory(categoryId) {
-        return this.makeRequest("delete", `/category/delete/${categoryId}`);
+        return this.makeRequest("delete", `/api/categories/delete/${categoryId}`);
     }
 
-    // --- PRODUCT METHODS ---
+    // --- PRODUCT METHODS --- (Product Service)
     static async createProduct(formData) {
         return this.makeRequest(
             "post", 
-            "/product/create", 
-            formData, 
+            "/api/products/create",
+            formData,
             null,  
             {
                 ...this.getHeader("multipart/form-data"),
@@ -90,8 +90,8 @@ export default class ApiService {
     static async updateProduct(productId, formData) {
         return this.makeRequest(
             "put", 
-            `/product/update/${productId}`, 
-            formData, 
+            `/api/products/update/${productId}`,
+            formData,
             null,  
             {
                 ...this.getHeader("multipart/form-data"),
@@ -101,49 +101,49 @@ export default class ApiService {
     }
 
     static async deleteProduct(productId) {
-        return this.makeRequest("delete", `/product/delete/${productId}`);
+        return this.makeRequest("delete", `/api/products/delete/${productId}`);
     }
 
     static async getAllProducts(page = 0, size = 10) {
-        return this.makeRequest("get", "/product/get-all", null, { page, size });
+        return this.makeRequest("get", "/api/products/get-all", null, { page, size });
     }
 
     static async searchProducts(searchValue) {
-        return this.makeRequest("get", "/product/search", null, { searchValue });
+        return this.makeRequest("get", "/api/products/search", null, { searchValue });
     }
 
     static async getAllProductsByCategoryId(categoryId) {
-        return this.makeRequest("get", `/product/get-by-category-id/${categoryId}`);
+        return this.makeRequest("get", `/api/products/get-by-category-id/${categoryId}`);
     }
 
     static async getProductById(productId) {
-        return this.makeRequest("get", `/product/get-by-product-id/${productId}`);
+        return this.makeRequest("get", `/api/products/get-by-product-id/${productId}`);
     }
 
-    // --- ORDER METHODS ---
-    
+    // --- ORDER METHODS --- (Order Service)
     static async createOrder(orderRequest) {
-        return this.makeRequest("post", "/order/create", orderRequest);
+        return this.makeRequest("post", "/api/orders/create", orderRequest);
     }
+
     static async getAllOrders() {
-        return this.makeRequest("get", "/order/filter");
+        return this.makeRequest("get", "/api/orders/filter");
     }
 
     static async getAllOrderItemsByStatus(status) {
-        return this.makeRequest("get", "/order/filter", null, { status });
+        return this.makeRequest("get", "/api/orders/filter", null, { status });
     }
     
     static async getOrderItemById(itemId) {
-        return this.makeRequest("get", "/order/filter", null, { itemId });
+        return this.makeRequest("get", "/api/orders/filter", null, { itemId });
     }
     
     static async updateOrderItemsByStatus(orderItemId, status) {
-        return this.makeRequest("put", `/order/update-item-status/${orderItemId}`, null, { status });
+        return this.makeRequest("put", `/api/orders/update-item-status/${orderItemId}`, null, { status });
     }
 
-    // --- Email Notification ---
+    // --- Email Notification --- (Notification Service)
     static async sendStatusUpdateEmail(orderItemId, status, userData, productData) {
-        return this.makeRequest("post", "/notification/send-status-email", {
+        return this.makeRequest("post", "/api/notifications/send-status-email", {
             orderItemId,
             status,
             user: userData,
@@ -151,14 +151,11 @@ export default class ApiService {
         });
     }
 
-    static async createCheckoutSession(checkoutRequest) {
-        return this.makeRequest("post", "/payment/create-checkout-session", checkoutRequest);
-    }
-    // --- PAYMENT METHODS ---
+    // --- PAYMENT METHODS --- (Payment Service)
     static async createCheckoutSession(orderRequest) {
         return this.makeRequest(
             "post", 
-            "/api/create-checkout-session", 
+            "/api/payments/create-checkout-session",
             orderRequest,
             null,
             {
@@ -168,17 +165,17 @@ export default class ApiService {
         );
     }
 
-    // --- AUTHENTICATION ---
+    // --- AUTHENTICATION --- (User Service)
     static async registerUser(registration) {
-        return this.makeRequest("post", "/auth/register", registration);
+        return this.makeRequest("post", "/api/auth/register", registration);
     }
 
     static async loginUser(loginDetails) {
-        return this.makeRequest("post", "/auth/login", loginDetails);
+        return this.makeRequest("post", "/api/auth/login", loginDetails);
     }
 
     static async getLoggedInUserInfo() {
-        return this.makeRequest("get", "/user/my-info");
+        return this.makeRequest("get", "/api/users/my-info");
     }
 
     static logout() {
@@ -194,28 +191,34 @@ export default class ApiService {
     static isAdmin() {
         return localStorage.getItem("role") === "ADMIN";
     }
+
     static async googleLogin(googleToken) {
         console.log("Sending Google token to backend:", googleToken);
-        return this.makeRequest("post", "/auth/google", { token: googleToken });
+        return this.makeRequest("post", "/api/auth/google", { token: googleToken });
     }
+
     static async sendOtp(email) {
-        return this.makeRequest("post", "/auth/forgot-password", null, { email });
+        return this.makeRequest("post", "/api/auth/send-otp", { email });
     }
     
     static async verifyOtp(email, otp) {
-        return this.makeRequest("post", "/auth/verify-otp", null, { email, otp });
+        return this.makeRequest("post", "/api/auth/verify-otp", { email, otp });
     }
     
     static async resetPassword(email, newPassword) {
-        return this.makeRequest("post", "/auth/reset-password", null, { email, newPassword });
-    }
-    //---ADDRESS---
-    
-    static async saveAddress(body) {
-        const response = await axios.post(`${this.BASE_URL}/address/save`, body, {
-            headers: this.getHeader()
-        })
-        return response.data;
+        return this.makeRequest("post", "/api/auth/reset-password", { email, newPassword });
     }
 
+    // --- USER PROFILE METHODS --- (User Service)
+    static async updateUserProfile(userData) {
+        return this.makeRequest("put", "/api/users/update-profile", userData);
+    }
+
+    static async getUserProfile() {
+        return this.makeRequest("get", "/api/users/profile");
+    }
+
+    static async getAllUsers() {
+        return this.makeRequest("get", "/api/users/get-all");
+    }
 }
